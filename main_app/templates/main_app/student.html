@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{% static 'main_app/css/student.css' %}">
+  <title>Student Records</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="mask">
+      <div class="popup-window">
+        <div class="top-panel">
+          <span class="close-button" onclick="hideWindow()">x</span>
+        </div>
+        <div class="content">
+          <h2>Are you sure you want to delete the record?</h2>
+          <div class="buttons-container">
+            <div class="buttons">
+              <button class="button cancel-button" onclick="hideWindow()">Cancel</button>
+              <form action="delete/{{ student.id }}" method="POST">
+                {% csrf_token %}
+                <input class="button confirm-button" type="submit" value="Confirm">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="data">
+      <h2>Student Data</h2>
+      <div class="row">
+        <span>Name:</span>
+        <span>{{ student.first_name }} {{ student.last_name }}</span>
+      </div>
+      <div class="row">
+        <span>Email: </span>
+        <span>{{ student.email }}</span>
+      </div>
+      <div class="row">
+        <span>Date of Birth:</span>
+        <span>{{ student.date_of_birth }}</span>
+      </div>
+      <div class="row">
+        <span>Graduation Year:</span>
+        <span>{{ student.graduation_year }}</span>
+      </div>
+      <div class="row">
+        <span>Gender:</span>
+        <span>{{ student.gender }}</span>
+      </div>
+      <div class="row">
+        <span>City:</span>
+        <span>{{ student.city }}</span>
+      </div>
+
+      <!-- links -->
+      <div class="links">
+        <a class="button" href="edit/{{ student.id }}">Edit</a>
+        <button class="button delete" onclick="showWindow()"> Delete </button>
+
+      </div>
+    </div>
+  </div>
+
+</body>
+<script>
+  function showWindow(e) {
+    d = document.getElementsByClassName("mask")[0];
+    d.classList.add("show");
+    popupWindow = document.getElementsByClassName("popup-window")[0];
+    popupWindow.classList.add("show");
+  }
+
+  function hideWindow() {
+    d = document.getElementsByClassName("mask")[0];
+    d.classList.remove("show");
+
+    popupWindow = document.getElementsByClassName("popup-window")[0];
+    popupWindow.classList.remove("show");
+  }
+</script>
+
+</html>

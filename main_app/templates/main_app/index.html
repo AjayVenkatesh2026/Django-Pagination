@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="{% static 'main_app/css/index.css' %}" >
+    <title>Student Records</title>
+  </head>
+  <body>
+    <!-- <a class="create-button" href="student/create">Create New Record</a> -->
+    <br>
+    <div class="records">
+      <div class="title">
+        <h1>Results for Page {{ page_obj.number }}</h1>
+        <a href="student/create" class="add-icon">+</a>
+      </div>
+      <div class="record header-record">
+        <span class="field">Name </span>
+        <span class="email field">Email</span>
+        <span class="gender field">Gender</span>
+        <span class="date-of-birth field">Date of Birth</span>
+        <span class="grad-year field">Graduation Year</span>
+        <span class="city field"> City </span>
+      </div>
+      {% for record in page_obj %}
+      <a href="student/{{record.id}}">
+        <div class="record">
+          <span class="name field">{{ record.first_name }} {{ record.last_name }}</span>
+          <span class="email field">{{ record.email }}</span>
+          <span class="gender field">{{ record.gender }}</span>
+          <span class="date-of-birth field">{{ record.date_of_birth }}</span>
+          <span class="grad-year field">{{ record.graduation_year }}</span>
+          <span class="city field">{{ record.city }} </span>
+        </div>
+      </a>
+      {% endfor %}
+      <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; First</a>
+                <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            {% endif %}
+    
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+            </span>
+    
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">Next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">Last &raquo;</a>
+            {% endif %}
+        </span>
+      </div>
+    </div>
+  </body>
+</html>
