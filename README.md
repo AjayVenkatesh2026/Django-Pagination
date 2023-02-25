@@ -2,7 +2,7 @@
 
 ## About Project:
 
-This is mini project done after completing a [Python Developer Bootcamp course](https://www.udemy.com/course/python-developer-bootcamp-beginner-to-expert/) while I was interning at [**Riktam Technologies**](https://www.riktamtech.com/). This project is basically a really watered-down version of **Medium**.
+This is mini project done after completing a [Python Developer Bootcamp course](https://www.udemy.com/course/python-developer-bootcamp-beginner-to-expert/) while I was interning at [**Riktam Technologies**](https://www.riktamtech.com/). This project applies the concept of server-side pagination with Django framework.
 
 ## Features
 
